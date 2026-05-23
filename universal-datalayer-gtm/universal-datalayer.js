@@ -96,14 +96,14 @@
       'value': p.price,
       'currency': p.currency
     });
-    // Google Ads Dynamic Remarketing (separate — required by Google)
+    // Google Ads Dynamic Remarketing (inside view_item — new format)
     DL.push({
-      'event': 'remarketing',
+      'event': 'view_item_remarketing',
       'google_business_vertical': C.vertical,
-      'dynx_itemid': p.item_id,
+      'dynx_itemid': [p.item_id],
       'dynx_pagetype': 'offerdetail',
       'dynx_totalvalue': p.price,
-      'ecomm_prodid': p.item_id,
+      'ecomm_prodid': [p.item_id],
       'ecomm_pagetype': 'product',
       'ecomm_totalvalue': p.price
     });
@@ -122,21 +122,21 @@
       'value': tv,
       'currency': C.currency
     });
-    DL.push({'event':'remarketing','google_business_vertical':C.vertical,'dynx_itemid':ids,'dynx_pagetype':'category','dynx_totalvalue':tv,'ecomm_prodid':ids,'ecomm_pagetype':'category','ecomm_totalvalue':tv});
+    DL.push({'event':'view_item_list_remarketing','google_business_vertical':C.vertical,'dynx_itemid':ids,'dynx_pagetype':'category','dynx_totalvalue':tv,'ecomm_prodid':ids,'ecomm_pagetype':'category','ecomm_totalvalue':tv});
   }
 
   // ─── SEARCH ────────────────────────────────────────────────────────
   if(PAGE==='search'){
     var sq=params.get('s')||(document.querySelector('input[name="s"]')||{}).value||'';
     DL.push({'event':'search','search_term':sq,'user_data':user_data,'search_string':sq,'query':sq});
-    DL.push({'event':'remarketing','google_business_vertical':C.vertical,'dynx_pagetype':'searchresults','dynx_itemid':[],'dynx_totalvalue':0});
+    DL.push({'event':'view_search_results_remarketing','google_business_vertical':C.vertical,'dynx_pagetype':'searchresults','dynx_itemid':[],'dynx_totalvalue':0,'ecomm_pagetype':'searchresults'});
   }
 
   // ─── BEGIN CHECKOUT ────────────────────────────────────────────────
   if(PAGE==='checkout'){
     DL.push({ecommerce:null});
     DL.push({'event':'begin_checkout','event_id':'chk_'+Date.now(),'ecommerce':{currency:C.currency},'user_data':user_data});
-    DL.push({'event':'remarketing','google_business_vertical':C.vertical,'dynx_pagetype':'conversionintent','ecomm_pagetype':'cart'});
+    DL.push({'event':'begin_checkout_remarketing','google_business_vertical':C.vertical,'dynx_pagetype':'conversionintent','ecomm_pagetype':'cart'});
   }
 
   // ─── PURCHASE ──────────────────────────────────────────────────────
@@ -159,12 +159,12 @@
       'new_customer': !document.cookie.match(/_pts_purchased/)
     });
     document.cookie='_pts_purchased=1;path=/;max-age=31536000;domain='+C.domain;
-    DL.push({'event':'remarketing','google_business_vertical':C.vertical,'dynx_itemid':cids,'dynx_pagetype':'conversion','dynx_totalvalue':order.value||0,'ecomm_prodid':cids,'ecomm_pagetype':'purchase','ecomm_totalvalue':order.value||0,'transaction_id':order.transaction_id});
+    DL.push({'event':'purchase_remarketing','google_business_vertical':C.vertical,'dynx_itemid':cids,'dynx_pagetype':'conversion','dynx_totalvalue':order.value||0,'ecomm_prodid':cids,'ecomm_pagetype':'purchase','ecomm_totalvalue':order.value||0,'transaction_id':order.transaction_id});
   }
 
-  // ─── HOME / OTHER REMARKETING ──────────────────────────────────────
-  if(PAGE==='home') DL.push({'event':'remarketing','google_business_vertical':C.vertical,'dynx_pagetype':'home','ecomm_pagetype':'home'});
-  if(['other','cart'].indexOf(PAGE)>-1) DL.push({'event':'remarketing','google_business_vertical':C.vertical,'dynx_pagetype':'other','ecomm_pagetype':'other'});
+  // ─── HOME / OTHER ────────────────────────────────────────────────
+  if(PAGE==='home') DL.push({'event':'page_view_remarketing','google_business_vertical':C.vertical,'dynx_pagetype':'home','ecomm_pagetype':'home'});
+  if(['other','cart'].indexOf(PAGE)>-1) DL.push({'event':'page_view_remarketing','google_business_vertical':C.vertical,'dynx_pagetype':'other','ecomm_pagetype':'other'});
 
   // ═══════════════════════════════════════════════════════════════════════
   // INTERACTION EVENTS (user clicks)
@@ -189,7 +189,7 @@
       'value': p.price||0,
       'currency': p.currency||C.currency
     });
-    DL.push({'event':'remarketing','google_business_vertical':C.vertical,'dynx_itemid':p.item_id||'','dynx_pagetype':'conversionintent','dynx_totalvalue':p.price||0});
+    DL.push({'event':'add_to_cart_remarketing','google_business_vertical':C.vertical,'dynx_itemid':[p.item_id||''],'dynx_pagetype':'conversionintent','dynx_totalvalue':p.price||0,'ecomm_prodid':[p.item_id||''],'ecomm_pagetype':'cart','ecomm_totalvalue':p.price||0});
   });
 
   // ─── FORM SUBMIT (Lead) ───────────────────────────────────────────
