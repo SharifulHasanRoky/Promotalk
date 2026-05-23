@@ -1,0 +1,13 @@
+name = "Shopify DataLayer Pro"
+client_id = ""
+application_url = ""
+embedded = false
+
+[access_scopes]
+scopes = "read_products,read_orders,read_customers"
+
+[auth]
+redirect_urls = []
+
+[webhooks]
+api_version = "2024-07"

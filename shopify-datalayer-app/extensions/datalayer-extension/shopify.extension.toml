@@ -1,0 +1,49 @@
+api_version = "2024-07"
+type = "theme"
+
+[settings]
+  [[settings.fields]]
+    key = "enable_datalayer"
+    type = "checkbox"
+    name = "Enable DataLayer"
+    default = true
+
+  [[settings.fields]]
+    key = "business_vertical"
+    type = "select"
+    name = "Business Vertical"
+    default = "retail"
+    [[settings.fields.options]]
+      label = "Retail / Ecommerce"
+      value = "retail"
+    [[settings.fields.options]]
+      label = "Education"
+      value = "education"
+    [[settings.fields.options]]
+      label = "Hotels & Rentals"
+      value = "hotels_rentals"
+    [[settings.fields.options]]
+      label = "Local Services"
+      value = "local"
+    [[settings.fields.options]]
+      label = "Real Estate"
+      value = "real_estate"
+    [[settings.fields.options]]
+      label = "Travel"
+      value = "travel"
+
+  [[settings.fields]]
+    key = "cookie_duration"
+    type = "number"
+    name = "Cookie Duration (days)"
+    default = 390
+
+[[blocks]]
+  type = "datalayer_head"
+  name = "DataLayer (Head)"
+  target = "head"
+
+[[blocks]]
+  type = "datalayer_body"
+  name = "DataLayer (Body)"
+  target = "body"
