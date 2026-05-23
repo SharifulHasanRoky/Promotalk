@@ -1,0 +1,118 @@
+/* Developer DataLayer Pro - Admin Styles */
+.ddl-pro-wrap {
+    max-width: 900px;
+    margin: 20px auto;
+}
+.ddl-pro-wrap h1 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+.ddl-subtitle {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+.ddl-card {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.ddl-card-master {
+    border: 2px solid #2271b1;
+    background: #f0f6fc;
+}
+.ddl-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+.ddl-card-header h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #1d2327;
+}
+.ddl-desc {
+    margin: 0 0 6px;
+    color: #50575e;
+    font-size: 13px;
+}
+.ddl-desc code {
+    background: #f0f0f1;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 12px;
+}
+.ddl-note {
+    margin: 0;
+    color: #888;
+    font-size: 12px;
+    font-style: italic;
+}
+
+/* Toggle Switch */
+.ddl-toggle {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    gap: 8px;
+}
+.ddl-toggle input[type="checkbox"] {
+    display: none;
+}
+.ddl-toggle-slider {
+    position: relative;
+    width: 48px;
+    height: 26px;
+    background: #ccc;
+    border-radius: 26px;
+    transition: background 0.3s;
+}
+.ddl-toggle-slider::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    border-radius: 50%;
+    transition: transform 0.3s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+.ddl-toggle input:checked + .ddl-toggle-slider {
+    background: #2271b1;
+}
+.ddl-toggle input:checked + .ddl-toggle-slider::after {
+    transform: translateX(22px);
+}
+.ddl-toggle-label {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #666;
+    min-width: 28px;
+}
+.ddl-toggle input:checked ~ .ddl-toggle-label {
+    color: #2271b1;
+}
+
+/* Form table tweaks */
+.ddl-card .form-table th {
+    padding: 12px 10px 12px 0;
+    width: 180px;
+    font-weight: 500;
+}
+.ddl-card .form-table td {
+    padding: 10px 0;
+}
+.ddl-card .form-table input.regular-text,
+.ddl-card .form-table select {
+    width: 100%;
+    max-width: 400px;
+}
