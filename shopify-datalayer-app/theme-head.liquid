@@ -1,0 +1,45 @@
+{%- comment -%}
+  ═══════════════════════════════════════════════════════════════════════
+  SHOPIFY DATALAYER PRO - PASTE THIS IN theme.liquid HEAD
+  ═══════════════════════════════════════════════════════════════════════
+  Location: Shopify Admin → Online Store → Themes → Edit Code → layout/theme.liquid
+  Paste inside <head> ... </head> (BEFORE GTM/GA scripts)
+  ═══════════════════════════════════════════════════════════════════════
+{%- endcomment -%}
+
+<script>
+window.dataLayer = window.dataLayer || [];
+
+// ─── PAGE META + USER DATA ────────────────────────────────────────────
+window.dataLayer.push({
+  'event': 'page_view',
+  'page_type': '{{ template.name | default: "other" }}',
+  'page_title': {{ page_title | json }},
+  'page_location': {{ canonical_url | default: request.url | json }},
+  'page_path': '{{ request.path }}',
+  'page_referrer': document.referrer || '',
+  'shop_name': {{ shop.name | json }},
+  'shop_currency': {{ shop.currency | json }},
+  'shop_domain': {{ shop.domain | json }},
+  'locale': {{ request.locale.iso_code | json }},
+  'user_data': {
+    {% if customer %}
+    'user_id': '{{ customer.id }}',
+    'email': {{ customer.email | json }},
+    'phone_number': {{ customer.phone | json }},
+    'first_name': {{ customer.first_name | json }},
+    'last_name': {{ customer.last_name | json }},
+    'city': {{ customer.default_address.city | json }},
+    'region': {{ customer.default_address.province | json }},
+    'postal_code': {{ customer.default_address.zip | json }},
+    'country': {{ customer.default_address.country_code | json }},
+    'orders_count': {{ customer.orders_count }},
+    'total_spent': {{ customer.total_spent | divided_by: 100.0 }},
+    'customer_type': '{% if customer.orders_count > 0 %}returning{% else %}new{% endif %}',
+    {% else %}
+    'customer_type': 'visitor',
+    {% endif %}
+    'logged_in': {% if customer %}true{% else %}false{% endif %}
+  }
+});
+</script>
