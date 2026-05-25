@@ -1,0 +1,25 @@
+name = "DataLayer Pro"
+handle = "datalayer-pro"
+client_id = ""
+application_url = "https://example.com"
+embedded = true
+
+[build]
+automatically_update_urls_on_dev = true
+include_config_on_deploy = true
+
+[webhooks]
+api_version = "2024-10"
+
+[access_scopes]
+scopes = "read_products,read_orders,read_customers"
+
+[auth]
+redirect_urls = [
+  "https://example.com/auth/callback",
+  "https://example.com/auth/shopify/callback",
+  "https://example.com/api/auth/callback"
+]
+
+[pos]
+embedded = false

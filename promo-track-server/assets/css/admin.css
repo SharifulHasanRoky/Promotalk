@@ -1,0 +1,32 @@
+/* PromoTrack Server - Admin */
+.pts-wrap{max-width:920px;margin:20px auto}
+.pts-wrap h1{font-size:28px;font-weight:700}
+.pts-sub{color:#666;margin-bottom:24px}
+.pts-card{background:#fff;border:1px solid #e0e0e0;border-radius:8px;padding:20px 24px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.pts-master{border:2px solid #2271b1;background:#f0f6fc}
+.pts-card-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.pts-card-head h2{margin:0;font-size:17px;font-weight:600}
+.pts-features{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.pts-badge{background:#e8f5e9;color:#2e7d32;padding:4px 10px;border-radius:4px;font-size:12px;font-weight:500}
+/* Toggle */
+.pts-toggle{position:relative;display:inline-block;cursor:pointer}
+.pts-toggle input{display:none}
+.pts-slider{display:inline-block;width:44px;height:24px;background:#ccc;border-radius:24px;position:relative;transition:.3s}
+.pts-slider::after{content:'';position:absolute;top:2px;left:2px;width:20px;height:20px;background:#fff;border-radius:50%;transition:.3s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.pts-toggle input:checked+.pts-slider{background:#2271b1}
+.pts-toggle input:checked+.pts-slider::after{transform:translateX(20px)}
+/* Checkbox */
+.pts-check{cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.pts-check input{display:none}
+.pts-checkmark{width:18px;height:18px;border:2px solid #999;border-radius:4px;display:inline-block;position:relative;transition:.2s}
+.pts-check input:checked+.pts-checkmark{background:#2271b1;border-color:#2271b1}
+.pts-check input:checked+.pts-checkmark::after{content:'✓';color:#fff;position:absolute;top:-2px;left:2px;font-size:13px;font-weight:700}
+/* Tables */
+.pts-cookie-table th,.pts-emq-table th,.pts-events-table th{display:flex;align-items:center;gap:8px;padding:8px 0;font-weight:500}
+.pts-cookie-table td,.pts-emq-table td,.pts-events-table td{color:#555;font-size:13px;padding:8px 0}
+.pts-card .form-table th{width:200px;font-weight:500;padding:10px 0}
+.pts-card .form-table input.regular-text{width:100%;max-width:420px}
+/* EMQ Score */
+.pts-emq-score{margin-top:16px;padding:12px 16px;background:#e8f5e9;border-radius:6px;display:flex;align-items:center;gap:12px}
+.pts-score{font-size:24px;font-weight:700;color:#2e7d32}
+.pts-score-note{color:#555;font-size:13px}
